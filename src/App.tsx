@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ArrayInput from "./components/ArrayInput";
 import CsvOutput from "./components/CsvOutput";
 import FormatInfo from "./components/FormatInfo";
+import Footer from "./components/Footer";
 import { convertToCsv } from "./utils/csvConverter";
 import { downloadCsv } from "./utils/csvDownloader";
 
@@ -12,7 +13,7 @@ export default function GeohashToCsv() {
   const [header, setHeader] = useState<string>("geohash");
 
   useEffect(() => {
-    document.title = "Array to CSV Converter - Geohash Tools";
+    document.title = "Geohash Array to CSV Converter";
   }, []);
 
   const handleConvertToCsv = (): void => {
@@ -35,10 +36,19 @@ export default function GeohashToCsv() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Array to CSV Converter
+            Geohash Array to CSV Converter
           </h1>
           <p className="text-gray-600">
-            Paste your JavaScript array and get one item per row
+            Convert arrays of geohash indexes to CSV format for pasting into{" "}
+            <a 
+              href="https://www.geohash.es/draw" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 underline"
+            >
+              geohash.es/draw
+            </a>{" "}
+            and other mapping services
           </p>
         </div>
 
@@ -54,6 +64,8 @@ export default function GeohashToCsv() {
         {output && <CsvOutput output={output} onDownload={handleDownloadCsv} />}
 
         <FormatInfo />
+
+        <Footer />
       </div>
     </div>
   );
